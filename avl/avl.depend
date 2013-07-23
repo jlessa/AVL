@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1374610489 source:c:\users\lvieira\documents\github\avl\avl\avl.c
+	"avl.h"
+
+1374609247 c:\users\lvieira\documents\github\avl\avl\avl.h
+	<stdio.h>
+	<stdlib.h>
+
+1374610266 source:c:\users\lvieira\documents\github\avl\avl\main.c
+	<stdio.h>
+	<stdlib.h>
+	"avl.h"
+

@@ -13,7 +13,7 @@ typedef struct TAVL{
 
 void alteraCR(AVL *a , double c);
 void alteraSemestre(AVL *a ,int n);
-void imprime(AVL* t,int m);
+void imprime(AVL* t);
 
 int calc_alt(AVL *t);
 int maximo(int a,int b);
@@ -23,8 +23,9 @@ AVL* RSE (AVL *t);
 AVL* RSD (AVL *t);
 AVL* RDE (AVL* t);
 AVL* RED (AVL* t);
-AVL* insere(AVL *t,int m,char n[78],double c,double carga, int sem);
+AVL* insere(AVL *t,int m);
 
 AVL* busca (AVL* t,int m);
+AVL* cria();
 AVL* destroi(AVL *t);
 AVL* removeAluno(AVL* t,int m);

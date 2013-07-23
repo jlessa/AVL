@@ -1,24 +1,26 @@
 #include "avl.h"
 
-
-int maximo(int a, int b){
-    if(a>b) return a;
-    return b;
-};
-
-int calc_alt(AVL *t){
-    if(!t) return -1;
-    return t->alt;
-};
-
 int vazia(AVL *t){
-    return t==NULL;
-}
+    return t == NULL;
+};
 
 void imprime(AVL *t){
-    if(vazia(t)) printf("<>");
+    if(vazia(t))
+        printf("<>");
     else
-}
+        if(vazia(t->esq) && (vazia(t->dir)))
+            printf("<%d>",t->matricula);
+        else{
+            printf("<%d>",t->matricula);
+            imprime(t->esq);
+            imprime(t->dir);
+
+        }
+};
+
+AVL* cria(){
+    return NULL;
+};
 
 AVL* RSE(AVL *t){
     AVL *novo =t->dir;
@@ -48,4 +50,47 @@ AVL* RED(AVL* t){
      t->esq = RSD(t->esq);
      t = RSD(t);
      return t;
+};
+
+int maximo(int a, int b){
+    if(a>b) return a;
+    return b;
+};
+
+int calc_alt(AVL *t){
+    if(!t) return -1;
+    return t->alt;
+};
+
+AVL* insere(AVL *t, int mat){
+    if(!t){
+        t = (AVL*) malloc((sizeof(AVL)));
+        t->matricula = mat;
+        /*
+        colocar os scanners aqui para preencher as outras informações
+        */
+
+        t->alt = 0;
+        t->esq = t->dir = NULL;
+    }
+    else
+        if(mat < t->matricula){
+            t->esq = insere(t->esq,mat);
+            if((calc_alt(t->esq) - calc_alt((t->dir))) == 2)
+                if(mat < t->esq->matricula)
+                    t = RSD(t);
+                else
+                    t = RED(t);
+        }
+        else
+            if(mat > t->matricula){
+                t->dir = insere(t->dir,mat);
+                if((calc_alt(t->dir) - calc_alt((t->esq))) == 2)
+                    if(mat > t->dir->matricula)
+                        t = RSE(t);
+                    else
+                        t = RDE(t);
+            }
+         t ->alt = maximo(calc_alt(t->esq),calc_alt(t->dir)) + 1;
+         return t;
 };
