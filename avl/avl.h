@@ -20,13 +20,14 @@ int calc_alt(AVL *t);
 int maximo(int a,int b);
 int vazia(AVL *t);
 
+
 AVL* RSE (AVL *t);
 AVL* RSD (AVL *t);
 AVL* RDE (AVL* t);
 AVL* RED (AVL* t);
 AVL* insere(AVL *t,int m);
 
-AVL* busca (AVL* t,int m);
 AVL* cria();
 AVL* destroi(AVL *t);
 AVL* removeAluno(AVL* t,int m);
+AVL* busca(AVL *t, int m);

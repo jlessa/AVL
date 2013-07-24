@@ -107,3 +107,15 @@ AVL* insere(AVL *t, int mat){
          t ->alt = maximo(calc_alt(t->esq),calc_alt(t->dir)) + 1;
          return t;
 };
+
+AVL* busca(AVL *t , int m){
+	AVL *proc;
+	if(vazia(t))
+		return NULL;	
+	if(t->matricula == m) 
+		return t;	
+	if(m < t->matricula) 
+		busca(t->esq,m);
+	else 
+		busca(t->dir,m);
+};
