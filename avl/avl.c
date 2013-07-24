@@ -4,7 +4,7 @@ int vazia(AVL *t){
     return t == NULL;
 };
 
-void imprime(AVL *t){
+void imprimeComVazios(AVL *t){
     if(vazia(t))
         printf("<>");
     else
@@ -12,10 +12,22 @@ void imprime(AVL *t){
             printf("<%d>",t->matricula);
         else{
             printf("<%d>",t->matricula);
-            imprime(t->esq);
-            imprime(t->dir);
+            imprimeComVazios(t->esq);
+            imprimeComVazios(t->dir);
 
         }
+};
+
+void imprimeSemVazios(AVL *t){
+   	if(!(vazia(t))){        
+        if(vazia(t->esq) && (vazia(t->dir)))
+            printf("<%d>",t->matricula);
+        else{
+            printf("<%d>",t->matricula);
+            imprimeSemVazios(t->esq);
+            imprimeSemVazios(t->dir);
+        }
+	}
 };
 
 AVL* cria(){
@@ -71,7 +83,8 @@ AVL* insere(AVL *t, int mat){
         */
 
         t->alt = 0;
-        t->esq = t->dir = NULL;
+        t->esq = NULL;
+		t->dir = NULL;
     }
     else
         if(mat < t->matricula){
