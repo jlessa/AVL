@@ -4,31 +4,20 @@ int vazia(AVL *t){
     return t == NULL;
 };
 
-void imprimeComVazios(AVL *t){
-    if(vazia(t))
+void imprime(AVL *t){
+	if(vazia(t))
         printf("<>");
     else
         if(vazia(t->esq) && (vazia(t->dir)))
             printf("<%d>",t->matricula);
         else{
             printf("<%d>",t->matricula);
-            imprimeComVazios(t->esq);
-            imprimeComVazios(t->dir);
+			if(t->esq)
+				imprime(t->esq);
+			if(t->dir)
+				imprime(t->dir);
 
         }
-};
-
-void imprimeSemVazios(AVL *t){
-   	if(!(vazia(t))){
-        if(vazia(t->esq) && (vazia(t->dir)))
-            printf("<%d>",t->matricula);
-        else{
-            printf("<%d>",t->matricula);
-            imprimeSemVazios(t->esq);
-            imprimeSemVazios(t->dir);
-        }
-	}else
-        printf("\nVazio\n");
 };
 
 AVL* cria(){
@@ -36,10 +25,10 @@ AVL* cria(){
 };
 
 AVL* RSE(AVL *t){
-    AVL *novo =t->dir;
+    AVL *novo = t->dir;
     t->dir = novo->esq;
     novo->esq = t;
-    t->alt = 1 + maximo(calc_alt(novo->esq),calc_alt(novo->dir));
+    t->alt = 1 + maximo(calc_alt(t->esq),calc_alt(t->dir));
     novo->alt = maximo(calc_alt(novo->dir),t->alt)+1;
     return novo;
 };
@@ -48,7 +37,7 @@ AVL* RSD(AVL *t){
     AVL *novo =t->esq;
     t->esq = novo->dir;
     novo->dir = t;
-    t->alt = 1 + maximo(calc_alt(novo->esq),calc_alt(novo->dir));
+    t->alt = 1 + maximo(calc_alt(t->esq),calc_alt(t->dir));
     novo->alt = maximo(calc_alt(novo->esq),t->alt)+1;
     return novo;
 };
@@ -60,7 +49,7 @@ AVL* RDE(AVL* t){
 };
 
 AVL* RED(AVL* t){
-     t->esq = RSD(t->esq);
+     t->esq = RSE(t->esq);
      t = RSD(t);
      return t;
 };
@@ -109,8 +98,7 @@ AVL* insere(AVL *t, int mat){
          return t;
 };
 
-AVL* busca(AVL *t , int m){
-	AVL *proc;
+AVL* busca(AVL *t , int m){	
 	if(vazia(t))
 		return NULL;
 	if(t->matricula == m)
@@ -121,20 +109,20 @@ AVL* busca(AVL *t , int m){
 		busca(t->dir,m);
 };
 
-int fb(AVL* t){
-    if(!t)
-        return 0;
-    int lh, rh;
+int fb(AVL* t){    
+	int left,right;		
+	if(!t)
+		return 0;	    
     if(!(t->esq))
-        lh = 0;
+        left = 0;
     else
-        lh = 1 + (t->esq->alt);
+        left = 1 + (t->esq->alt);
     if(!(t->dir))
-        rh = 0;
+        right = 0;
     else
-        rh = 1 + (t->dir->alt);
-    return (lh - rh);
-};
+        right = 1 + (t->dir->alt);
+    return (left - right);
+}
 
 AVL* retira(AVL *t,int m){
     if(!t)
@@ -172,7 +160,7 @@ AVL* retira(AVL *t,int m){
         }
         else{
             AVL *q = t;
-            t = t->esq;
+            t = t->esq;			
             free(q);
             return t;
         }
@@ -190,7 +178,7 @@ AVL* retira(AVL *t,int m){
                 t->alt = lh;
             else
                 t->alt = rh;
-        }
-        return t;
+        }        
     }
+	return t;
 };

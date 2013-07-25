@@ -13,8 +13,8 @@ typedef struct TAVL{
 
 void alteraCR(AVL *a , double c);
 void alteraSemestre(AVL *a ,int n);
-void imprimeComVazios(AVL* t);
-void imprimeSemVazios(AVL* t);
+void imprime(AVL* t);
+
 
 int calc_alt(AVL *t);
 int maximo(int a,int b);
