@@ -19,6 +19,7 @@ void imprimeSemVazios(AVL* t);
 int calc_alt(AVL *t);
 int maximo(int a,int b);
 int vazia(AVL *t);
+int fb(AVL* t);
 
 
 AVL* RSE (AVL *t);
@@ -29,5 +30,5 @@ AVL* insere(AVL *t,int m);
 
 AVL* cria();
 AVL* destroi(AVL *t);
-AVL* removeAluno(AVL* t,int m);
+AVL* retira(AVL* t,int m);
 AVL* busca(AVL *t, int m);

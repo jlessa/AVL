@@ -8,14 +8,16 @@ int main(void)
     a = cria();
 	b = cria();
     a = insere(a,5);
-    a = insere(a,7);	
-    a = insere(a,4);	
+    a = insere(a,7);
+    a = insere(a,4);
 	a = insere(a,8);
-	b = busca(a,9);
-	if(!vazia(b))
-		printf("%d\n",b->matricula);
-	else
-		printf("erro");
+	a = insere(a,9);
+	a = retira(a,5);
+	//a = retira(a,4);
+	imprimeSemVazios(a);
+	printf("\n");
+	imprimeComVazios(a);
+
 	system("pause");
 
     return 0;

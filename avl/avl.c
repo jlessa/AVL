@@ -19,7 +19,7 @@ void imprimeComVazios(AVL *t){
 };
 
 void imprimeSemVazios(AVL *t){
-   	if(!(vazia(t))){        
+   	if(!(vazia(t))){
         if(vazia(t->esq) && (vazia(t->dir)))
             printf("<%d>",t->matricula);
         else{
@@ -27,7 +27,8 @@ void imprimeSemVazios(AVL *t){
             imprimeSemVazios(t->esq);
             imprimeSemVazios(t->dir);
         }
-	}
+	}else
+        printf("\nVazio\n");
 };
 
 AVL* cria(){
@@ -111,11 +112,85 @@ AVL* insere(AVL *t, int mat){
 AVL* busca(AVL *t , int m){
 	AVL *proc;
 	if(vazia(t))
-		return NULL;	
-	if(t->matricula == m) 
-		return t;	
-	if(m < t->matricula) 
+		return NULL;
+	if(t->matricula == m)
+		return t;
+	if(m < t->matricula)
 		busca(t->esq,m);
-	else 
+	else
 		busca(t->dir,m);
+};
+
+int fb(AVL* t){
+    if(!t)
+        return 0;
+    int lh, rh;
+    if(!(t->esq))
+        lh = 0;
+    else
+        lh = 1 + (t->esq->alt);
+    if(!(t->dir))
+        rh = 0;
+    else
+        rh = 1 + (t->dir->alt);
+    return (lh - rh);
+};
+
+AVL* retira(AVL *t,int m){
+    if(!t)
+        return t;
+    if(m > t->matricula){
+        t->dir = retira(t->dir,m);
+        if(fb(t) == 2)
+            if(fb(t->esq) >= 0)
+                t = RSD(t);
+            else
+                t = RSE(t);
+    }
+    else
+        if(m < t->matricula){
+            t->esq = retira(t->esq,m);
+            if(fb(t) == -2)
+                if(fb(t->dir) <= 0)
+                    t = RSE(t);
+                else
+                    t = RDE(t);
+        }
+    else{
+        if(t->dir){
+            AVL *p = t->dir;
+            while(p->esq)
+                p = p->esq;
+            t->matricula = p->matricula;
+            p->matricula = m;
+            t->dir = retira(t->dir,m);
+            if(fb(t) == 2)
+                if(fb(t->esq) >= 0)
+                    t = RSD(t);
+                else
+                    t = RED(t);
+        }
+        else{
+            AVL *q = t;
+            t = t->esq;
+            free(q);
+            return t;
+        }
+        if(t){
+            int lh,rh;
+            if(!t->esq)
+                lh = 0;
+            else
+                lh = 1 + t->esq->alt;
+            if(!t->dir)
+                rh = 0;
+            else
+                rh = 1 + t->dir->alt;
+            if(lh > rh)
+                t->alt = lh;
+            else
+                t->alt = rh;
+        }
+        return t;
+    }
 };
