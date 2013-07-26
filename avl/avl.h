@@ -1,15 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "string.h"
 
 typedef struct TAVL{
     int matricula;
-    char nome[78];
-    double cr;
-    double cargaCursada;
+    char nome[50];
+    float cr;
+    float cargaCursada;
     int nSemestre;
     int alt;
     struct TAVL *esq, *dir;
 }AVL;
+
+
 
 void alteraCR(AVL *a , double c);
 void alteraSemestre(AVL *a ,int n);
@@ -26,7 +29,7 @@ AVL* RSE (AVL *t);
 AVL* RSD (AVL *t);
 AVL* RDE (AVL* t);
 AVL* RED (AVL* t);
-AVL* insere(AVL *t,int m);
+AVL* insere(AVL *t, int mat , char nome[] , float c , float carga , int sem);
 
 AVL* cria();
 AVL* destroi(AVL *t);

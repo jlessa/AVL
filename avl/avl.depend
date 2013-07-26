@@ -23,3 +23,16 @@
 	<stdlib.h>
 	"avl.h"
 
+1374810635 source:c:\users\jefferson\documents\github\avl\avl\avl.c
+	"avl.h"
+
+1374810343 c:\users\jefferson\documents\github\avl\avl\avl.h
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+
+1374810389 source:c:\users\jefferson\documents\github\avl\avl\main.c
+	<stdio.h>
+	<stdlib.h>
+	"avl.h"
+

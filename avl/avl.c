@@ -8,10 +8,19 @@ void imprime(AVL *t){
 	if(vazia(t))
         printf("<>");
     else
-        if(vazia(t->esq) && (vazia(t->dir)))
-            printf("<%d>",t->matricula);
+        if(vazia(t->esq) && (vazia(t->dir))){
+            printf("\nMatricula:%d",t->matricula);
+            printf(" Nome:%s",t->nome);
+            printf(" CR:%f",t->cr);
+			printf(" Semestre:%d",t->nSemestre);
+            printf(" CargaHoraria:%f\n",t->cargaCursada);
+        }
         else{
-            printf("<%d>",t->matricula);
+            printf("\nMatricula:%d",t->matricula);
+            printf(" Nome:%s",t->nome);
+            printf(" CR:%f",t->cr);
+			printf(" Semestre:%d",t->nSemestre);
+            printf(" CargaHoraria:%f\n",t->cargaCursada);
 			if(t->esq)
 				imprime(t->esq);
 			if(t->dir)
@@ -64,10 +73,17 @@ int calc_alt(AVL *t){
     return t->alt;
 };
 
-AVL* insere(AVL *t, int mat){
+
+
+AVL* insere(AVL *t, int mat , char* nome , float c , float carga , int sem){
     if(!t){
         t = (AVL*) malloc((sizeof(AVL)));
+
         t->matricula = mat;
+        t->cargaCursada = carga;
+        t->cr = c;
+        t->nSemestre = sem;
+        strcpy(t->nome,nome);
         /*
         colocar os scanners aqui para preencher as outras informações
         */
@@ -78,7 +94,7 @@ AVL* insere(AVL *t, int mat){
     }
     else
         if(mat < t->matricula){
-            t->esq = insere(t->esq,mat);
+            t->esq = insere(t->esq,mat,nome,c,carga,sem);
             if((calc_alt(t->esq) - calc_alt((t->dir))) == 2)
                 if(mat < t->esq->matricula)
                     t = RSD(t);
@@ -87,7 +103,7 @@ AVL* insere(AVL *t, int mat){
         }
         else
             if(mat > t->matricula){
-                t->dir = insere(t->dir,mat);
+                t->dir = insere(t->dir,nome,mat,c,carga,sem);
                 if((calc_alt(t->dir) - calc_alt((t->esq))) == 2)
                     if(mat > t->dir->matricula)
                         t = RSE(t);
@@ -98,7 +114,7 @@ AVL* insere(AVL *t, int mat){
          return t;
 };
 
-AVL* busca(AVL *t , int m){	
+AVL* busca(AVL *t , int m){
 	if(vazia(t))
 		return NULL;
 	if(t->matricula == m)
@@ -109,10 +125,10 @@ AVL* busca(AVL *t , int m){
 		busca(t->dir,m);
 };
 
-int fb(AVL* t){    
-	int left,right;		
+int fb(AVL* t){
+	int left,right;
 	if(!t)
-		return 0;	    
+		return 0;
     if(!(t->esq))
         left = 0;
     else
@@ -160,7 +176,7 @@ AVL* retira(AVL *t,int m){
         }
         else{
             AVL *q = t;
-            t = t->esq;			
+            t = t->esq;
             free(q);
             return t;
         }
@@ -178,7 +194,7 @@ AVL* retira(AVL *t,int m){
                 t->alt = lh;
             else
                 t->alt = rh;
-        }        
+        }
     }
 	return t;
 };

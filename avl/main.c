@@ -4,17 +4,18 @@
 
 int main(void)
 {
-    AVL *a,*b;
-    a = cria();
+    AVL *a,*b;	    
+	a = cria();
 	b = cria();
-
-
-
-	a = insere(a,4);
+    
+    a = insere(a,4,"jeff",7.5,1400,5);
+	a = insere(a,2,"tai",8.7,2000,7);
+    /*
+    a = insere(a,4);
 	a = insere(a,8);
 	a = insere(a,9);
 	a = retira(a,5);
-	a = retira(a,4);	
+	a = retira(a,4);
 	a = retira(a,9);
 	a = insere(a,7);
 	a = insere(a,12);
@@ -24,6 +25,7 @@ int main(void)
 	a = insere(a,65);
 	a = insere(a,3);
 	a = insere(a,1);
+	*/
 	imprime(a);
 
 	system("pause");
