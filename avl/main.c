@@ -8,24 +8,14 @@ int main(void)
 	a = cria();
 	b = cria();
     
-    a = insere(a,4,"jeff",7.5,1400,5);
-	a = insere(a,2,"tai",8.7,2000,7);
-    /*
-    a = insere(a,4);
-	a = insere(a,8);
-	a = insere(a,9);
-	a = retira(a,5);
-	a = retira(a,4);
-	a = retira(a,9);
-	a = insere(a,7);
-	a = insere(a,12);
-	a = insere(a,66);
-	a = insere(a,43);
-	a = insere(a,22);
-	a = insere(a,65);
-	a = insere(a,3);
-	a = insere(a,1);
-	*/
+    a = insere(a,4,"Jeff",7.5,3524,7);
+	a = insere(a,2,"Tai",8.7,2000,13);
+	a = insere(a,1,"Mateus",8.7,1300,9);
+	a = insere(a,3,"Guilherme",8.7,2000,5);
+	a = insere(a,5,"Gabriel",8.7,2000,3);
+	a = insere(a,6,"Jesse",8.7,2000,4);		
+	a = limpeza(a);
+	printf("\nAlunos na Arvore: ");
 	imprime(a);
 
 	system("pause");

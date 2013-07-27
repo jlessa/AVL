@@ -4,7 +4,7 @@ int vazia(AVL *t){
     return t == NULL;
 };
 
-void imprime(AVL *t){
+void imprime(AVL *t){	
 	if(vazia(t))
         printf("<>");
     else
@@ -13,14 +13,14 @@ void imprime(AVL *t){
             printf(" Nome:%s",t->nome);
             printf(" CR:%f",t->cr);
 			printf(" Semestre:%d",t->nSemestre);
-            printf(" CargaHoraria:%f\n",t->cargaCursada);
+            printf(" CargaHoraria:%f",t->cargaCursada);
         }
         else{
             printf("\nMatricula:%d",t->matricula);
             printf(" Nome:%s",t->nome);
             printf(" CR:%f",t->cr);
 			printf(" Semestre:%d",t->nSemestre);
-            printf(" CargaHoraria:%f\n",t->cargaCursada);
+            printf(" CargaHoraria:%f",t->cargaCursada);
 			if(t->esq)
 				imprime(t->esq);
 			if(t->dir)
@@ -29,9 +29,9 @@ void imprime(AVL *t){
         }
 };
 
-AVL* cria(){
-    return NULL;
-};
+	AVL* cria(){
+		return NULL;
+	};
 
 AVL* RSE(AVL *t){
     AVL *novo = t->dir;
@@ -83,11 +83,7 @@ AVL* insere(AVL *t, int mat , char* nome , float c , float carga , int sem){
         t->cargaCursada = carga;
         t->cr = c;
         t->nSemestre = sem;
-        strcpy(t->nome,nome);
-        /*
-        colocar os scanners aqui para preencher as outras informações
-        */
-
+        strcpy(t->nome,nome);        
         t->alt = 0;
         t->esq = NULL;
 		t->dir = NULL;
@@ -103,7 +99,7 @@ AVL* insere(AVL *t, int mat , char* nome , float c , float carga , int sem){
         }
         else
             if(mat > t->matricula){
-                t->dir = insere(t->dir,nome,mat,c,carga,sem);
+                t->dir = insere(t->dir,mat,nome,c,carga,sem);
                 if((calc_alt(t->dir) - calc_alt((t->esq))) == 2)
                     if(mat > t->dir->matricula)
                         t = RSE(t);
@@ -116,7 +112,7 @@ AVL* insere(AVL *t, int mat , char* nome , float c , float carga , int sem){
 
 AVL* busca(AVL *t , int m){
 	if(vazia(t))
-		return NULL;
+		return t;
 	if(t->matricula == m)
 		return t;
 	if(m < t->matricula)
@@ -166,6 +162,10 @@ AVL* retira(AVL *t,int m){
             while(p->esq)
                 p = p->esq;
             t->matricula = p->matricula;
+			t->cargaCursada = p->cargaCursada;
+			strcpy(t->nome,p->nome);
+			t->cr = p->cr;
+			t->nSemestre = p->nSemestre;			
             p->matricula = m;
             t->dir = retira(t->dir,m);
             if(fb(t) == 2)
@@ -176,7 +176,10 @@ AVL* retira(AVL *t,int m){
         }
         else{
             AVL *q = t;
-            t = t->esq;
+			if(vazia(t->esq) && vazia(t->dir))
+				t = NULL;
+			else
+				t = t->esq;
             free(q);
             return t;
         }
@@ -198,3 +201,45 @@ AVL* retira(AVL *t,int m){
     }
 	return t;
 };
+
+AVL* limpeza(AVL *t){
+	float carga = CARGA_MAX;
+	if(vazia(t))
+		return t;
+	else {
+		if(t->esq)
+			t->esq = limpeza(t->esq);
+		if(t->dir)
+			t->dir = limpeza(t->dir);		
+		if((t->cargaCursada == carga) && (t->nSemestre <= 12)){
+			printf("\nMatricula:%d",t->matricula);
+			printf(" Nome:%s",t->nome);
+			printf(" CR:%f",t->cr);
+			printf(" Semestre:%d",t->nSemestre);
+			printf(" CargaHoraria:%f\n",t->cargaCursada);
+			printf(" foi removido pela Regra de formatura");
+			return retira(t,t->matricula);
+		}
+		else if((t->cargaCursada < carga/2) && (t->nSemestre > 8)){
+				printf("\nMatricula:%d",t->matricula);
+				printf(" Nome:%s",t->nome);
+				printf(" CR:%f",t->cr);
+				printf(" Semestre:%d",t->nSemestre);
+				printf(" CargaHoraria:%f\n",t->cargaCursada);
+				printf(" foi removido pela Regra de Jubilamento A");						
+				return retira(t,t->matricula);			
+			}
+			else
+				if((t->cargaCursada < carga) && (t->nSemestre > 12)){		
+					printf("\nMatricula:%d",t->matricula);
+					printf(" Nome:%s",t->nome);
+					printf(" CR:%f",t->cr);
+					printf(" Semestre:%d",t->nSemestre);
+					printf(" CargaHoraria:%f\n",t->cargaCursada);
+					printf(" foi removido pela Regra de Jubilamento B");
+					return retira(t,t->matricula);
+				}				
+	}
+};
+
+
