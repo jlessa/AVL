@@ -6,8 +6,7 @@
 
 typedef struct TAVL{
     int matricula;
-    char nome[50];
-    float cr;
+    char nome[50];    
     float cargaCursada;
     int nSemestre;
     int alt;
@@ -16,8 +15,8 @@ typedef struct TAVL{
 
 
 
-void alteraCR(AVL *a , double c);
-void alteraSemestre(AVL *a ,int n);
+void alteraCH(AVL *a , int m , float c);
+void alteraSemestre(AVL *a , int m, int sem);
 void imprime(AVL* t);
 
 
@@ -31,7 +30,7 @@ AVL* RSE (AVL *t);
 AVL* RSD (AVL *t);
 AVL* RDE (AVL* t);
 AVL* RED (AVL* t);
-AVL* insere(AVL *t, int mat , char nome[] , float c , float carga , int sem);
+AVL* insere(AVL *t, int mat , char nome[] , float carga , int sem);
 AVL* limpeza(AVL *t);
 
 AVL* cria();
