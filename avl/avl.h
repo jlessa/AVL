@@ -3,6 +3,7 @@
 #include "string.h"
 
 #define CARGA_MAX 3524.00;
+#define NUM_SEM_MAX 12;
 
 typedef struct TAVL{
     int matricula;
