@@ -9,7 +9,7 @@ int main(void)
 	a = cria();
 	
 	while(enter != 8) {		
-		printf("Digite a opcao:\n");
+		printf("\nDigite a opcao:\n");
 		printf("1 - inserir\n");
         printf("2 - retirar\n");
         printf("3 - limpar\n");
@@ -19,17 +19,20 @@ int main(void)
 		printf("7 - Carregar arquivo\n");
 		printf("8 - sair\n");
 		scanf("%d",&enter);				
-		if(enter == 1){			
-			a = insere(a,4,3524,7,"Jeff");			
-			a = insere(a,2,2000,13,"Tai");
-			a = insere(a,1,1300,9,"Mateus");
-			a = insere(a,3,2000,5,"Guilherme");
-			a = insere(a,5,2000,3,"Gabriel");
-			a = insere(a,6,2000,4,"Jesse");
-			
+		if(enter == 1){
+			int m,nSem;
+			float ch;
+			char nome[50];
+			printf("\nDigite,em ordem, matrincula, carga horaria, numero de semestres cursados e nome\n");
+			scanf("%d",&m);
+			scanf("%f",&ch);
+			scanf("%d",&nSem);
+			scanf("%s",&nome);
+			a = insere(a,m,ch,nSem,nome);			
 		}
 		if(enter == 2){
 			int i;
+			printf("\nDigite a matricula do aluno que deseja remover");
 			scanf("%d",&i);
 			a = retira(a,i);
 		}
@@ -37,10 +40,19 @@ int main(void)
 			a = limpeza(a);
 		}
 		if(enter == 4){
-			alteraCH(a,4,2300);
+			int m;
+			float ch;
+			printf("\nDigite a matricula do aluno que deseja alterar a Carga Horaria e a nova Carga Horaria\n");
+			scanf("%d",&m);
+			scanf("%f",&ch);
+			alteraCH(a,m,ch);
 		}
 		if(enter == 5){
-			alteraSemestre(a,2,12);
+			int m,nSem;			
+			printf("\nDigite a matricula do aluno que deseja alterar o numero de semestres cursados e o novo numero de semestres cursados\n");
+			scanf("%d",&m);
+			scanf("%d",&nSem);
+			alteraSemestre(a,m,nSem);
 		}
 		if(enter == 6){
 			printf("\nAlunos na Arvore: ");

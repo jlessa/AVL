@@ -5,20 +5,21 @@ int vazia(AVL *t){
 };
 
 void imprime(AVL *t){	
+	float ch = CARGA_MAX;
 	if(vazia(t))
         printf("<>");
     else
         if(vazia(t->esq) && (vazia(t->dir))){
             printf("\nMatricula:%d",t->matricula);
             printf(" Nome:%s",t->nome);            
-			printf(" Semestre:%d",t->nSemestre);
-            printf(" CargaHoraria:%.2f",t->cargaCursada);
+			printf(" Semestre:%d",t->nSemestre);					
+			printf(" CargaHoraria:%.2f %%",(t->cargaCursada*100)/(ch));
         }
         else{
             printf("\nMatricula:%d",t->matricula);
             printf(" Nome:%s",t->nome);            
 			printf(" Semestre:%d",t->nSemestre);
-            printf(" CargaHoraria:%.2f",t->cargaCursada);
+            printf(" CargaHoraria:%.2f %%",(t->cargaCursada*100)/(ch));
 			if(t->esq)
 				imprime(t->esq);
 			if(t->dir)
@@ -210,11 +211,11 @@ AVL* limpeza(AVL *t){
 			t->esq = limpeza(t->esq);
 		if(t->dir)
 			t->dir = limpeza(t->dir);		
-		if((t->cargaCursada == carga) && (t->nSemestre <= maxSem)){
+		if(t->cargaCursada >= carga){
 			printf("\nMatricula:%d",t->matricula);
 			printf(" Nome:%s",t->nome);			
 			printf(" Semestre:%d",t->nSemestre);
-			printf(" CargaHoraria:%.2f\n",t->cargaCursada);
+			printf(" CargaHoraria:%.2f\n",(t->cargaCursada*100)/(carga));
 			printf(" foi removido pela Regra de formatura");
 			return retira(t,t->matricula);
 		}
@@ -222,7 +223,7 @@ AVL* limpeza(AVL *t){
 				printf("\nMatricula:%d",t->matricula);
 				printf(" Nome:%s",t->nome);				
 				printf(" Semestre:%d",t->nSemestre);
-				printf(" CargaHoraria:%.2f\n",t->cargaCursada);
+				printf(" CargaHoraria:%.2f %%\n",(t->cargaCursada*100)/(carga));
 				printf(" foi removido pela Regra de Jubilamento A");						
 				return retira(t,t->matricula);			
 			 }
@@ -231,7 +232,7 @@ AVL* limpeza(AVL *t){
 					printf("\nMatricula:%d",t->matricula);
 					printf(" Nome:%s",t->nome);					
 					printf(" Semestre:%d",t->nSemestre);
-					printf(" CargaHoraria:%.2f\n",t->cargaCursada);
+					printf(" CargaHoraria:%.2f %%\n",(t->cargaCursada*100)/(carga));
 					printf(" foi removido pela Regra de Jubilamento B");
 					return retira(t,t->matricula);
 				}				
