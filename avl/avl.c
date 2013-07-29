@@ -73,7 +73,7 @@ int calc_alt(AVL *t){
 
 
 
-AVL* insere(AVL *t, int mat , char* nome , float carga , int sem){
+AVL* insere(AVL *t, int mat , float carga , int sem , char* nome ){
     if(!t){
         t = (AVL*) malloc((sizeof(AVL)));
 
@@ -87,7 +87,7 @@ AVL* insere(AVL *t, int mat , char* nome , float carga , int sem){
     }
     else
         if(mat < t->matricula){
-            t->esq = insere(t->esq,mat,nome,carga,sem);
+            t->esq = insere(t->esq,mat,carga,sem,nome);
             if((calc_alt(t->esq) - calc_alt((t->dir))) == 2)
                 if(mat < t->esq->matricula)
                     t = RSD(t);
@@ -96,7 +96,7 @@ AVL* insere(AVL *t, int mat , char* nome , float carga , int sem){
         }
         else
             if(mat > t->matricula){
-                t->dir = insere(t->dir,mat,nome,carga,sem);
+                t->dir = insere(t->dir,mat,carga,sem,nome);
                 if((calc_alt(t->dir) - calc_alt((t->esq))) == 2)
                     if(mat > t->dir->matricula)
                         t = RSE(t);
