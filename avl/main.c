@@ -5,10 +5,10 @@
 int main(void)
 {
     int enter = 0;
-	AVL *a;	    
+	AVL *a;
 	a = cria();
-	
-	while(enter != 8) {		
+
+	while(enter != 8) {
 		printf("\nDigite a opcao:\n");
 		printf("1 - inserir\n");
         printf("2 - retirar\n");
@@ -18,7 +18,7 @@ int main(void)
 		printf("6 - imprime arvore\n");
 		printf("7 - Carregar arquivo\n");
 		printf("8 - sair\n");
-		scanf("%d",&enter);				
+		scanf("%d",&enter);
 		if(enter == 1){
 			int m,nSem;
 			float ch;
@@ -28,7 +28,7 @@ int main(void)
 			scanf("%f",&ch);
 			scanf("%d",&nSem);
 			scanf("%s",&nome);
-			a = insere(a,m,ch,nSem,nome);			
+			a = insere(a,m,ch,nSem,nome);
 		}
 		if(enter == 2){
 			int i;
@@ -37,7 +37,7 @@ int main(void)
 			a = retira(a,i);
 		}
 		if(enter == 3){
-			a = limpeza(a);
+			a = limpeza2(a);
 		}
 		if(enter == 4){
 			int m;
@@ -48,7 +48,7 @@ int main(void)
 			alteraCH(a,m,ch);
 		}
 		if(enter == 5){
-			int m,nSem;			
+			int m,nSem;
 			printf("\nDigite a matricula do aluno que deseja alterar o numero de semestres cursados e o novo numero de semestres cursados\n");
 			scanf("%d",&m);
 			scanf("%d",&nSem);
@@ -63,11 +63,11 @@ int main(void)
 			int mat,nSem,f,n,m;
 			float ch;
 			char nome[50],tab,linha;
-			in = fopen("arq_teste2.txt","r");			
-			if(in){				
+			in = fopen("arq_teste1.txt","r");
+			if(in){
 				while(f = fgetc(in) != EOF){
-					fscanf(in,"%d%f%d",&mat,&ch,&nSem);				
-					fgets(nome,49,in);					
+					fscanf(in,"%d%f%d",&mat,&ch,&nSem);
+					fgets(nome,49,in);
 					for(n=0;n<49;n++){
 						if(nome[n] == '\t')
 							for(m=0;m<49;m++)
@@ -76,11 +76,11 @@ int main(void)
 							nome[n] = nome[n+1];
 					}
 					a = insere(a,mat,ch,nSem,nome);
-					printf("\n%d %.2f %d %s inserido\n",mat,ch,nSem,nome);										
-				}				
+					printf("\n%d %.2f %d %s inserido\n",mat,ch,nSem,nome);
+				}
 			}
 			fclose(in);
 		}
-	}        								
+	}
     return 0;
 }

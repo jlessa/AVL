@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include "string.h"
 
-#define CARGA_MAX 3524.00;
-#define NUM_SEM_MAX 12;
 
 typedef struct TAVL{
     int matricula;
-    char nome[50];    
+    char nome[50];
     float cargaCursada;
     int nSemestre;
     int alt;
@@ -33,6 +31,8 @@ AVL* RDE (AVL* t);
 AVL* RED (AVL* t);
 AVL* insere(AVL *t, int mat, float carga , int sem, char nome[]);
 AVL* limpeza(AVL *t);
+AVL *limpeza2(AVL* t);
+AVL* limpa(AVL* t);
 
 AVL* cria();
 AVL* destroi(AVL *t);

@@ -1,0 +1,5 @@
+001	881		2	Novak Djokovic
+002	2643	11	Andy Murray
+003	1162	9	David Ferrer
+004	2643	13	Rafael Nadal
+005	3540	6	Roger Federer
