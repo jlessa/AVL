@@ -10,29 +10,34 @@ int main(void)
 
 	while(enter != 8) {
 		printf("\nDigite a opcao:\n");
-		printf("1 - inserir\n");
-        printf("2 - retirar\n");
-        printf("3 - limpar\n");
-		printf("4 - alterar carga horaria\n");
-		printf("5 - alterar semestre\n");
-		printf("6 - imprime arvore\n");
+		printf("1 - Inserir\n");
+        	printf("2 - Retirar\n");
+	        printf("3 - Limpar\n");
+		printf("4 - Alterar carga horaria\n");
+		printf("5 - Alterar semestre\n");
+		printf("6 - Imprime arvore\n");
 		printf("7 - Carregar arquivo\n");
-		printf("8 - sair\n");
+		printf("8 - Sair\n");
 		scanf("%d",&enter);
 		if(enter == 1){
 			int m,nSem;
 			float ch;
-			char nome[50];
-			printf("\nDigite,em ordem, matrincula, carga horaria, numero de semestres cursados e nome\n");
+			char nome;
+			printf("\nDigite os dados\n");
+			printf("Matricula:");
 			scanf("%d",&m);
+			printf("Carga Horaria:");
 			scanf("%f",&ch);
+			printf("Semestre:");
 			scanf("%d",&nSem);
+			printf("Nome:");
 			scanf("%s",&nome);
-			a = insere(a,m,ch,nSem,nome);
+			a = insere(a,m,ch,nSem,&nome);
 		}
 		if(enter == 2){
 			int i;
-			printf("\nDigite a matricula do aluno que deseja remover");
+			printf("\nDigite a matricula do aluno que deseja remover\n");
+			printf("Matricula:");
 			scanf("%d",&i);
 			a = retira(a,i);
 		}
@@ -43,14 +48,18 @@ int main(void)
 			int m;
 			float ch;
 			printf("\nDigite a matricula do aluno que deseja alterar a Carga Horaria e a nova Carga Horaria\n");
+			printf("Matricula:");
 			scanf("%d",&m);
+			printf("Carga Horaria:");
 			scanf("%f",&ch);
 			alteraCH(a,m,ch);
 		}
 		if(enter == 5){
 			int m,nSem;
 			printf("\nDigite a matricula do aluno que deseja alterar o numero de semestres cursados e o novo numero de semestres cursados\n");
+			printf("Matricula:");
 			scanf("%d",&m);
+			printf("Semestre:");
 			scanf("%d",&nSem);
 			alteraSemestre(a,m,nSem);
 		}
@@ -63,7 +72,7 @@ int main(void)
 			int mat,nSem,f,n,m;
 			float ch;
 			char nome[50],tab,linha;
-			in = fopen("arq_teste1.txt","r");
+			in = fopen("arq_teste2.txt","r");
 			if(in){
 				while(f = fgetc(in) != EOF){
 					fscanf(in,"%d%f%d",&mat,&ch,&nSem);

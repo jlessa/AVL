@@ -30,7 +30,7 @@ AVL* RSD (AVL *t);
 AVL* RDE (AVL* t);
 AVL* RED (AVL* t);
 AVL* insere(AVL *t, int mat, float carga , int sem, char nome[]);
-AVL* limpeza(AVL *t);
+//AVL* limpeza(AVL *t);
 AVL *limpeza2(AVL* t);
 AVL* limpa(AVL* t);
 

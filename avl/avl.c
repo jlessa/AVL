@@ -201,19 +201,19 @@ AVL* retira(AVL *t,int m){
 
 
 
-AVL *limpeza2(AVL* t){		
+AVL *limpeza2(AVL* t){
 	if(vazia(t))
 		return t;
-	else{		
+	else{
 		if(!vazia(t->esq)){
 			t->esq = limpeza2(t->esq);
 		}
 		if(!vazia(t->dir)){
 			t->dir = limpeza2(t->dir);
-		}					
+		}
 		t = limpa(t);
 	}
-	return t;			
+	return t;
 };
 
 
@@ -237,7 +237,7 @@ AVL* limpa(AVL* t){
 				printf(" CargaHoraria:%.2f %%\n",(t->cargaCursada*100)/(carga));
 				printf(" foi removido pela Regra de Jubilamento A");
 				t = retira(t,t->matricula);
-		}			 
+		}
 		else if((t->nSemestre > maxSem) && (t->cargaCursada < carga)){
 				printf("\nMatricula:%d",t->matricula);
 				printf(" Nome:%s",t->nome);
@@ -247,11 +247,11 @@ AVL* limpa(AVL* t){
 				t = retira(t,t->matricula);
 		}
 	return t;
-	
+
 };
 
 
-AVL* limpeza(AVL *t){
+/*AVL* limpeza(AVL *t){
 	int maxSem;
 	float carga;
 	maxSem = 12;
@@ -259,9 +259,9 @@ AVL* limpeza(AVL *t){
 	if(vazia(t))
 		return t;
 	else {
-		if(t->esq)			
+		if(t->esq)
 			t->esq = limpeza(t->esq);
-		if(t->dir)			
+		if(t->dir)
 			t->dir = limpeza(t->dir);
 		if(t->cargaCursada >= carga){
 			printf("\nMatricula:%d",t->matricula);
@@ -289,7 +289,7 @@ AVL* limpeza(AVL *t){
 					return retira(t,t->matricula);
 				}
 	}
-};
+};*/
 
 void alteraCH(AVL* t,int m,float ch){
 	AVL *p = busca(t,m);

@@ -23,15 +23,15 @@
 	<stdlib.h>
 	"avl.h"
 
-1375070451 source:c:\users\jefferson\documents\github\avl\avl\avl.c
+1375402569 source:c:\users\jefferson\documents\github\avl\avl\avl.c
 	"avl.h"
 
-1375374026 c:\users\jefferson\documents\github\avl\avl\avl.h
+1375402569 c:\users\jefferson\documents\github\avl\avl\avl.h
 	<stdio.h>
 	<stdlib.h>
 	"string.h"
 
-1375373873 source:c:\users\jefferson\documents\github\avl\avl\main.c
+1375402632 source:c:\users\jefferson\documents\github\avl\avl\main.c
 	<stdio.h>
 	<stdlib.h>
 	"avl.h"
