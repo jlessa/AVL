@@ -22,7 +22,7 @@ int main(void)
 		if(enter == 1){
 			int m,nSem;
 			float ch;
-			char nome;
+            char nome[50];
 			printf("\nDigite os dados\n");
 			printf("Matricula:");
 			scanf("%d",&m);
@@ -31,8 +31,8 @@ int main(void)
 			printf("Semestre:");
 			scanf("%d",&nSem);
 			printf("Nome:");
-			scanf("%s",&nome);
-			a = insere(a,m,ch,nSem,&nome);
+			scanf(" %49[^\n]",nome);
+			a = insere(a,m,ch,nSem,nome);
 		}
 		if(enter == 2){
 			int i;
@@ -85,7 +85,7 @@ int main(void)
 							nome[n] = nome[n+1];
 					}
 					a = insere(a,mat,ch,nSem,nome);
-					printf("\n%d %.2f %d %s inserido\n",mat,ch,nSem,nome);
+					printf("\n%d %.2f %d %s inserido",mat,ch,nSem,nome);
 				}
 			}
 			fclose(in);
